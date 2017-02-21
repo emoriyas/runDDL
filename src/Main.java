@@ -439,16 +439,9 @@ public class Main {
 	 * Returns: void
 	*/
 	private static void runCatalog() {
-		// runDDL(String JDBC_DRIVER, String DB_URL, String USER, String PASS,
-		// String sql)
 
 		System.out.println(sqlAL.get(0));
 
-		/*
-		 * static String catalogDriver = ""; static String catalogHostName = "";
-		 * static String catalogUserName = ""; static String catalogPassword =
-		 * "";
-		 */
 		Connection conn = null;
 		Statement stmt = null;
 		String sql = "";
@@ -461,14 +454,16 @@ public class Main {
 			Class.forName(catalogDriver);
 
 			// STEP 3: Open a connection
-			conn = DriverManager.getConnection(catalogHostName);
+			if (catalogUserName.equals(" ") && catalogPassword.equals(" ")) {
+				conn = DriverManager.getConnection(catalogHostName);
+			} else {
+				conn = DriverManager.getConnection(catalogHostName, catalogUserName, catalogPassword);
+			}
 
 			// STEP 4: Execute a query
 			stmt = conn.createStatement();
 
 			try {
-				// String tname, String JDBC_DRIVER, String DB_URL, String USER,
-				// String PASS, int nodeid
 
 				sql = "SELECT * FROM dtables";
 				stmt.executeQuery(sql);
@@ -491,14 +486,6 @@ public class Main {
 
 				System.out.println("SQL table created");
 			}
-
-			/*
-			 * INSERT INTO SECONDTABLE VALUES (100,'ONE HUNDRED'),(200,'TWO
-			 * HUNDRED'),(300,'THREE HUNDRED');
-			 * 
-			 * (String JDBC_DRIVER, String DB_URL, String USER, String PASS,
-			 * String sql)
-			 */
 
 			for (int x = 0; x < nodeAL.size() - 1; x++) {
 
@@ -529,9 +516,6 @@ public class Main {
 
 					stmt.executeUpdate(sql);
 				}
-
-				// stmt.executeQuery(sql);
-				// stmt.executeUpdate(sql);
 
 			}
 
@@ -705,11 +689,6 @@ public class Main {
 
 		public void run() {
 			try {
-				// int threadnum = (int) threadName;
-				// System.out.println("Driver: " + JDBC_DRIVER);
-				// System.out.println("hostname: " + DB_URL);
-				// System.out.println("username: " + USER);
-				// System.out.println("passord: " + PASS);
 
 				for (int i = 0; i < sqlAL.size(); i++) {
 					// Pause for 4 seconds
