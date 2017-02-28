@@ -487,7 +487,7 @@ public class Main {
 				System.out.println("SQL table created");
 			}
 
-			for (int x = 0; x < nodeAL.size() - 1; x++) {
+			for (int x = 0; x < nodeAL.size(); x++) {
 
 				tname = parseTname(sqlAL.get(x));
 
