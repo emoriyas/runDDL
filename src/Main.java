@@ -368,15 +368,12 @@ public class Main {
 
 			// STEP 3: Open a connection
 			System.out.println("Connecting to database...");
-
+			
 			if (USER.equals(" ") && PASS.equals(" ")) {
 				conn = DriverManager.getConnection(DB_URL);
 			} else {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			}
-
-			// conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			// conn = DriverManager.getConnection(DB_URL);
 
 			// STEP 4: Execute a query
 			System.out.println("Creating statement...");
@@ -404,11 +401,11 @@ public class Main {
 			conn.close();
 		} catch (SQLException se) {
 			// Handle errors for JDBC
-			// se.printStackTrace();
+			//se.printStackTrace();
 			System.out.println("[" + DB_URL.substring(0, (DB_URL.length() - 1)) + "]: sql failed");
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			// e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("[" + DB_URL.substring(0, (DB_URL.length() - 1)) + "]: sql failed");
 		} finally {
 			// finally block used to close resources
